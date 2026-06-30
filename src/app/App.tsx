@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import "../styles/fonts.css";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 // coment jen kvuli git comit zprave (jsem kokot a expozenul jsem conect do databaze, takze to musim zmenit a znovu pushnout)
+// dalsi test vercelu
 import logoImg from "../imports/nobg.png";
 import celek1 from "../imports/celek.jpeg";
 import celek2 from "../imports/celek2.jpeg";
