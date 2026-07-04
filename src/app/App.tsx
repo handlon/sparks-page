@@ -1,5 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import "../styles/fonts.css";
+import {
+  animate,
+  motion,
+  useInView,
+  useMotionValue,
+  useTransform,
+} from "motion/react";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 // coment jen kvuli git comit zprave (jsem kokot a expozenul jsem conect do databaze, takze to musim zmenit a znovu pushnout)
 // dalsi test vercelu
@@ -105,6 +112,41 @@ interface Show {
 }
 
 const NAV_LINKS = ["Shows", "About", "Members", "Music", "Contact"];
+
+function CountUp({
+  end,
+  suffix = "",
+  duration = 1.4,
+  className,
+  style,
+}: {
+  end: number;
+  suffix?: string;
+  duration?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.4 });
+  const count = useMotionValue(0);
+  const display = useTransform(
+    count,
+    (value) => `${Math.round(value)}${suffix}`,
+  );
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    const controls = animate(count, end, { duration, ease: "easeOut" });
+    return controls.stop;
+  }, [count, end, duration, isInView]);
+
+  return (
+    <motion.span ref={ref} className={className} style={style}>
+      {display}
+    </motion.span>
+  );
+}
 
 export default function App() {
   const [heroIdx, setHeroIdx] = useState(0);
@@ -459,9 +501,9 @@ export default function App() {
             </div>
             <div className="mt-10 flex gap-8">
               {[
-                { label: "Years Active", value: "2" },
-                { label: "Albums", value: "1" },
-                { label: "Shows Played", value: "30+" },
+                { label: "Years Active", value: 2 },
+                { label: "Albums", value: 1 },
+                { label: "Shows Played", value: 30, suffix: "+" },
               ].map((stat) => (
                 <div key={stat.label}>
                   <div
@@ -473,7 +515,11 @@ export default function App() {
                       lineHeight: 1,
                     }}
                   >
-                    {stat.value}
+                    <CountUp
+                      end={stat.value}
+                      suffix={stat.suffix ?? ""}
+                      duration={1.6}
+                    />
                   </div>
                   <div
                     className="text-muted-foreground text-xs uppercase"
@@ -624,7 +670,6 @@ export default function App() {
                   src={album.cover}
                   alt={album.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  
                 />
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
