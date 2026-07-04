@@ -111,7 +111,7 @@ interface Show {
   link: string;
 }
 
-const NAV_LINKS = ["Shows", "About", "Members", "Music", "Contact"];
+const NAV_LINKS = ["Shows", "About", "Members", "Music", ];
 
 function CountUp({
   end,
