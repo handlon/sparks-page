@@ -5,23 +5,28 @@ import { MongoClient, type Db } from "mongodb";
    module is reused across warm invocations, so we cache one client on globalThis
    instead and never close it. */
 
-const uri = process.env.MONGODB_URI;
-if (!uri) {
-  throw new Error("MONGODB_URI is not set. Add it to .env.local (and to Vercel).");
-}
-
 const globalForMongo = globalThis as unknown as {
   _mongoClientPromise?: Promise<MongoClient>;
 };
 
-if (!globalForMongo._mongoClientPromise) {
-  globalForMongo._mongoClientPromise = new MongoClient(uri).connect();
+/* Connect lazily, inside getDb, rather than at module scope. A missing MONGODB_URI
+   used to throw the moment this file was imported, which crashed `next build` during
+   prerendering. Throwing from here instead means the failure lands inside the caller's
+   try/catch, so the page still builds and just renders its "couldn't load" state. */
+function getClient(): Promise<MongoClient> {
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    throw new Error("MONGODB_URI is not set. Add it to .env.local and to Vercel.");
+  }
+
+  if (!globalForMongo._mongoClientPromise) {
+    globalForMongo._mongoClientPromise = new MongoClient(uri).connect();
+  }
+  return globalForMongo._mongoClientPromise;
 }
 
-const clientPromise = globalForMongo._mongoClientPromise;
-
 export async function getDb(): Promise<Db> {
-  const client = await clientPromise;
+  const client = await getClient();
   return client.db("kapela_db");
 }
 
