@@ -1,6 +1,7 @@
 import { ArrowRight, MapPin } from "lucide-react";
 import type { Show } from "@/lib/shows";
-import { LinkButton, SectionHeading } from "../ui";
+import { LinkButton } from "../ui";
+import { SectionHeading } from "../SectionHeading";
 
 /* Server component: the dates are rendered into the HTML, so Google (and link
    previews) see them without running any JavaScript. That's the main reason the

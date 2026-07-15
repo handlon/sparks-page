@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { ALBUM } from "@/lib/content";
-import { LinkButton, SectionHeading } from "../ui";
+import { LinkButton } from "../ui";
+import { SectionHeading } from "../SectionHeading";
 
 export function Music() {
   return (

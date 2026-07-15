@@ -1,22 +1,46 @@
 "use client";
 
 import { useState } from "react";
+import { motion, useReducedMotion, type Variants } from "motion/react";
 import { PLAYERS, type Player } from "@/lib/content";
-import { Avatar, SectionHeading } from "../ui";
+import { Avatar } from "../ui";
+import { SectionHeading } from "../SectionHeading";
 import { MemberModal } from "../MemberModal";
+
+const gridVariants: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export function Members() {
   const [selected, setSelected] = useState<Player | null>(null);
+  const reduce = useReducedMotion();
 
   return (
     <section id="members" className="mx-auto max-w-7xl px-6 py-24">
       <SectionHeading eyebrow="Who we are" title="The" accent="Band" aside="Five" />
 
-      <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
+      <motion.div
+        className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5"
+        variants={reduce ? undefined : gridVariants}
+        initial={reduce ? false : "hidden"}
+        whileInView={reduce ? undefined : "show"}
+        viewport={{ once: true, amount: 0.25 }}
+      >
         {PLAYERS.map((player) => (
-          <button
+          <motion.button
             key={player.name}
             type="button"
+            variants={reduce ? undefined : cardVariants}
             onClick={() => setSelected(player)}
             className="group cursor-pointer text-left"
           >
@@ -32,9 +56,9 @@ export function Members() {
               {player.name}
             </h3>
             <p className="mt-1 text-sm text-muted-foreground">{player.instrument}</p>
-          </button>
+          </motion.button>
         ))}
-      </div>
+      </motion.div>
 
       {selected && (
         <MemberModal player={selected} onClose={() => setSelected(null)} />

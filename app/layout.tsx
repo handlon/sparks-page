@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 // Google renamed "Big Shoulders Display" to plain "Big Shoulders" — same typeface.
 import { Big_Shoulders, DM_Sans, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
+import { Sparks } from "@/components/Sparks";
 
 /* Self-hosted by next/font at build time: no render-blocking request to Google, and
    no layout shift, since the metrics are known up front. */
@@ -60,7 +61,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${display.variable} ${ui.variable} ${body.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {/* Ambient embers (behind, additive) + film grain (on top). Both are fixed,
+            pointer-events-none, and self-disable under prefers-reduced-motion. */}
+        <Sparks />
+        {children}
+        <div className="film-grain-layer" aria-hidden="true">
+          <div className="film-grain" />
+        </div>
+      </body>
     </html>
   );
 }

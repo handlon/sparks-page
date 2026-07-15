@@ -1,21 +1,24 @@
 import { Download } from "lucide-react";
 import { CONTACTS } from "@/lib/content";
 import { LinkButton } from "../ui";
+import { Reveal } from "../Reveal";
 
 export function Contact() {
   return (
     <section id="contact" className="py-24">
       <div className="mx-auto max-w-4xl px-6">
-        <p className="eyebrow mb-4 text-primary">Get in touch</p>
-        <h2 className="mb-6 text-[clamp(2.4rem,6vw,4rem)] uppercase leading-[0.9] text-foreground">
-          Book
-          <br />
-          <span className="text-primary">Young Sparks</span>
-        </h2>
-        <p className="prose-body mb-10 max-w-2xl text-muted-foreground">
-          For festival bookings, venue inquiries or press requests, reach out directly
-          &mdash; we answer everything.
-        </p>
+        <Reveal>
+          <p className="eyebrow mb-4 text-primary">Get in touch</p>
+          <h2 className="mb-6 text-[clamp(2.4rem,6vw,4rem)] uppercase leading-[0.9] text-foreground">
+            Book
+            <br />
+            <span className="spark-glow text-primary">Young Sparks</span>
+          </h2>
+          <p className="prose-body mb-10 max-w-2xl text-muted-foreground">
+            For festival bookings, venue inquiries or press requests, reach out directly
+            &mdash; we answer everything.
+          </p>
+        </Reveal>
 
         <div className="grid gap-4 sm:grid-cols-2">
           {CONTACTS.map((contact) => (

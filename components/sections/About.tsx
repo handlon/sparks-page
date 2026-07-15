@@ -1,11 +1,12 @@
 import { STATS, aboutImg } from "@/lib/content";
 import { CountUp } from "../CountUp";
+import { Reveal } from "../Reveal";
 
 export function About() {
   return (
     <section id="about" className="bg-surface py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-16 px-6 md:grid-cols-2">
-        <div className="relative">
+        <Reveal className="relative">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={aboutImg.src}
@@ -21,14 +22,14 @@ export function About() {
             className="pointer-events-none absolute -bottom-5 -right-5 -z-10 rounded-lg border border-border-strong"
             style={{ width: "70%", height: "70%" }}
           />
-        </div>
+        </Reveal>
 
-        <div>
+        <Reveal delay={0.12}>
           <p className="eyebrow mb-4 text-primary">About the band</p>
           <h2 className="mb-8 text-[clamp(2.4rem,6vw,4rem)] uppercase leading-[0.9] text-foreground">
             Old roots,
             <br />
-            <span className="text-primary">new fire.</span>
+            <span className="spark-glow text-primary">new fire.</span>
           </h2>
 
           <div className="prose-body space-y-5 text-muted-foreground">
@@ -57,7 +58,7 @@ export function About() {
               </div>
             ))}
           </dl>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

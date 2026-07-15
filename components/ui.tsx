@@ -48,35 +48,8 @@ export function LinkButton({
   );
 }
 
-/** Replaces the two headings that originally shipped with literal "_____" blanks. */
-export function SectionHeading({
-  eyebrow,
-  title,
-  accent,
-  aside,
-}: {
-  eyebrow?: string;
-  title: string;
-  accent?: string;
-  aside?: string;
-}) {
-  return (
-    <div className="mb-12 flex items-end justify-between gap-6 border-b border-border pb-5">
-      <div>
-        {eyebrow && <p className="eyebrow mb-3 text-primary">{eyebrow}</p>}
-        <h2 className="text-[clamp(2.2rem,6vw,3.75rem)] uppercase text-foreground">
-          {title}
-          {accent && <span className="text-primary"> {accent}</span>}
-        </h2>
-      </div>
-      {aside && (
-        <span className="eyebrow hidden shrink-0 pb-2 text-muted-foreground sm:block">
-          {aside}
-        </span>
-      )}
-    </div>
-  );
-}
+/* SectionHeading moved to its own client component (it now animates on scroll):
+   see components/SectionHeading.tsx. */
 
 /** Initials fallback, so a member without a portrait reads as deliberate, not broken. */
 export function Avatar({ name, src }: { name: string; src?: string }) {

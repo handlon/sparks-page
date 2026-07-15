@@ -69,7 +69,7 @@ export function Hero() {
           </h1>
 
           <p className="prose-body mt-6 max-w-xl text-foreground/80">
-            Old roots, <em className="not-italic text-primary">new fire.</em>{" "}
+            Old roots, <em className="spark-glow not-italic text-primary">new fire.</em>{" "}
             Traditional bluegrass with the energy and drive of the modern American
             scene.
           </p>
