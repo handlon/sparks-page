@@ -27,10 +27,10 @@ export function Members() {
 
   return (
     <section id="members" className="mx-auto max-w-7xl px-6 py-24">
-      <SectionHeading eyebrow="Who we are" title="The" accent="Band" aside="Five" />
+      <SectionHeading eyebrow="Who we are" title="The" accent="Band" aside="Four" />
 
       <motion.div
-        className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5"
+        className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4"
         variants={reduce ? undefined : gridVariants}
         initial={reduce ? false : "hidden"}
         whileInView={reduce ? undefined : "show"}

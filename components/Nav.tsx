@@ -50,8 +50,8 @@ export function Nav() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-[var(--dur-base)] ${
         scrolled
-          ? "border-b border-border bg-background/95 backdrop-blur-md"
-          : "border-b border-transparent bg-gradient-to-b from-black/60 to-transparent"
+          ? "border-b border-border  bg-background/95 backdrop-blur-md"
+          : "border-b border-transparent bg-background/50 from-black/60 to-transparent backdrop-blur-md"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">

@@ -1,6 +1,6 @@
 import celek1 from "@/assets/celek.webp";
 import celek2 from "@/assets/celek2.webp";
-import celek3 from "@/assets/celek3.webp";
+
 import aboutImg from "@/assets/about.webp";
 import roll1 from "@/assets/roll1.webp";
 import roll2 from "@/assets/roll2.webp";
@@ -14,7 +14,6 @@ export { aboutImg, logoImg, cover };
 export const HERO_IMAGES = [
   { src: celek1, alt: "Young Sparks performing live on stage" },
   { src: celek2, alt: "Young Sparks playing under blue stage lights" },
-  { src: celek3, alt: "The band mid-set at a bluegrass festival" },
 ];
 
 export const STRIP_IMAGES = [roll1, roll2, roll3, roll4, celek2];
@@ -39,14 +38,7 @@ export interface Player {
   image?: string;
 }
 
-/* TODO(honza): still to fill in.
-   1. `image` is intentionally empty — the original portraits were Unsplash stock photos
-      of strangers, not the band. Drop real files into /assets and set `image`; until then
-      the initials placeholder renders.
-   2. `role` / `bio` are placeholders — the old copy was template text about "Maya",
-      "Eli", "Sage", "Noah" and "Jules".
-   Heads up: the original data described Jan as a fiddle lead but tagged him "Banjo &
-   vocals", and Jitka the reverse. `instrument` is kept as it was — double-check it. */
+
 export const PLAYERS: Player[] = [
   {
     name: "Matyáš Frýdl",
@@ -75,13 +67,6 @@ export const PLAYERS: Player[] = [
     location: "Praha",
     role: "Upright bass, harmonies",
     bio: "TODO: a couple of sentences about Tomáš.",
-  },
-  {
-    name: "Jitka Vejsadová",
-    instrument: "Fiddle & vocals",
-    location: "Teplice",
-    role: "Fiddle, harmonies",
-    bio: "TODO: a couple of sentences about Jitka.",
   },
 ];
 
