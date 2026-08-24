@@ -26,7 +26,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[100dvh] items-end overflow-hidden"
+      className="relative flex min-h-[100dvh] items-center overflow-hidden"
     >
       {HERO_IMAGES.map((img, i) => (
         <div
@@ -43,33 +43,15 @@ export function Hero() {
             fetchPriority={i === 0 ? "high" : "low"}
             decoding="async"
             className="h-full w-full object-cover"
-            /* The new hero photos are bright, green daytime shots. We only tame the
-               saturation a touch here and keep the original brightness — the colour shift
-               happens in the blend layer below, not by darkening. objectPosition frames
-               faces high so the bottom-left text sits over instruments, not faces. */
-            style={{
-              filter: "saturate(0.92) brightness(1.1) contrast(1.13)",
-              objectPosition: "center 38%",
-            }}
           />
         </div>
       ))}
-
-      {/* Recolour, don't darken: a blue "color" blend keeps each pixel's original
-          brightness and only swaps its hue, so the green backdrop turns cool blue while
-          the photo stays bright and alive (a multiply here is what made it look gloomy). */}
-      <div
-        className="absolute inset-0"
-        style={{ background: "rgba(40,130,220,0.28)", mixBlendMode: "color" }}
-      />
 
       {/* Two scrims: vertical blends into the page, horizontal keeps the wordmark legible. */}
       <div className="absolute inset-0" style={{ background: "var(--scrim-v)" }} />
       <div className="absolute inset-0" style={{ background: "var(--scrim-h)" }} />
 
-      {/* Full-bleed and left-anchored: the lockup hugs the bottom-left edge, clear of the
-          faces in the upper half of the frame. */}
-      <div className="relative z-10 w-full px-6 pb-20 sm:px-8 sm:pb-24 lg:px-12">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-28 pt-24">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -80,7 +62,7 @@ export function Hero() {
             Bluegrass · Czech Republic · Est. 2024
           </p>
 
-          <h1 className="font-display text-[clamp(3.5rem,12.5vw,9rem)] font-black uppercase leading-[0.85] tracking-[-0.01em] text-foreground">
+          <h1 className="font-display text-[clamp(4rem,15vw,11rem)] font-black uppercase leading-[0.85] tracking-[-0.01em] text-foreground">
             Young
             <br />
             Sparks
